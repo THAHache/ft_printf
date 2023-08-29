@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-r <joserabasot@gmail.com>           +#+  +:+       +#+        */
+/*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 21:06:42 by jperez-r          #+#    #+#             */
-/*   Updated: 2019/12/19 05:01:48 by jperez-r         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:52:36 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_toa(char *dst, long int n, int len)
 	len = ft_intlen(n);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	size_t		len;
 	char		*dst;
@@ -42,7 +42,8 @@ char		*ft_itoa(int n)
 
 	len = ft_intlen(n);
 	nb = n;
-	if (!(dst = malloc(len + 1)))
+	dst = malloc(len + 1);
+	if (!dst)
 		return (0);
 	ft_toa(dst, nb, len);
 	dst[len] = '\0';

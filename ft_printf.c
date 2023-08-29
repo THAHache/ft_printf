@@ -6,7 +6,7 @@
 /*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 15:29:02 by jperez-r          #+#    #+#             */
-/*   Updated: 2020/12/13 17:42:35 by jperez-r         ###   ########.fr       */
+/*   Updated: 2023/08/20 17:19:00 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	find_flag(t_oprint *op, char **src)
 **   Función para calcular el width y la precisión
 */
 
-int		get_num(t_oprint *op, char **src)
+int	get_num(t_oprint *op, char **src)
 {
 	int	num;
 
@@ -81,7 +81,7 @@ void	find_type(t_oprint *op, char **src)
 		if (op->minzero == 0 && op->dot && op->pre >= 0)
 			op->minzero = -1;
 		if (**src == 'p')
-			print_p(op, (long)va_arg(op->lis, void *));
+			print_p(op, va_arg(op->lis, void *));
 		else if (**src == 'd' || **src == 'i')
 			print_diu(op, va_arg(op->lis, int), op->spasign);
 		else if (**src == 'u')
@@ -112,7 +112,7 @@ void	check_flags(t_oprint *op, char **src)
 		(*src)--;
 }
 
-int		ft_printf(const char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	int			size;
 	t_oprint	op;

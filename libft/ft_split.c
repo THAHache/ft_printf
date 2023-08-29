@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-r <joserabasot@gmail.com>           +#+  +:+       +#+        */
+/*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 03:16:32 by amepocch          #+#    #+#             */
-/*   Updated: 2019/12/19 11:01:41 by jperez-r         ###   ########.fr       */
+/*   Updated: 2022/10/13 16:11:33 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		ft_num_words(char const *s, char c)
+static int	ft_num_words(char const *s, char c)
 {
 	int	i;
 	int	cont;
@@ -46,13 +46,14 @@ static size_t	ft_wordlen(char const *s, int a, int z, char c)
 	return (wlen);
 }
 
-static char		*ft_set_word(char const *s, int a, int z, char c)
+static char	*ft_set_word(char const *s, int a, int z, char c)
 {
 	int		k;
 	char	*w;
 
 	k = 0;
-	if (!(w = (char *)malloc(ft_wordlen(s, a, z, c) + 1)))
+	w = (char *)malloc(ft_wordlen(s, a, z, c) + 1);
+	if (!w)
 		return (NULL);
 	while (a <= z)
 	{
@@ -67,7 +68,7 @@ static char		*ft_set_word(char const *s, int a, int z, char c)
 	return (w);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
@@ -79,15 +80,15 @@ char			**ft_split(char const *s, char c)
 	aux = 0;
 	if (!s)
 		return (NULL);
-	if (!(word = (char **)malloc(sizeof(char *) * (ft_num_words(s, c) + 1))))
+	word = (char **)malloc(sizeof(char *) * (ft_num_words(s, c) + 1));
+	if (!word)
 		return (NULL);
 	while (s[++i] != '\0')
 	{
 		if (s[i] == c && s[i - 1] != c)
 		{
-			word[j] = ft_set_word(s, aux, i, c);
+			word[j++] = ft_set_word(s, aux, i, c);
 			aux = i + 1;
-			j++;
 		}
 	}
 	if (s[i - 1] != c && ft_strlen(s) > 0)

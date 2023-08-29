@@ -25,6 +25,7 @@ all 		:   ${NAME}
 bonus		:	all
 
 clean 		:
+				make -C libft/ fclean
 				rm -f ${OBJS}
 
 fclean 		:	clean

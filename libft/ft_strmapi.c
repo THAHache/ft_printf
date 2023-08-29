@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-r <joserabasot@gmail.com>           +#+  +:+       +#+        */
+/*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 21:00:21 by jperez-r          #+#    #+#             */
-/*   Updated: 2019/12/18 21:29:35 by jperez-r         ###   ########.fr       */
+/*   Updated: 2022/10/13 15:05:17 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	i = 0;
 	if (!(s && f))
 		return (NULL);
-	if (!(dst = malloc(ft_strlen(s) + 1)))
+	dst = malloc(ft_strlen(s) + 1);
+	if (!dst)
 		return (NULL);
 	while (s[i])
 	{

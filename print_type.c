@@ -6,7 +6,7 @@
 /*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 15:29:32 by jperez-r          #+#    #+#             */
-/*   Updated: 2020/12/13 15:39:05 by jperez-r         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:44:08 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,12 @@ void	print_s(t_oprint *op)
 		put_width(op);
 }
 
-void	print_p(t_oprint *op, long nbr)
+void	print_p(t_oprint *op, void *nbr)
 {
-	op->hex = ft_itoa_base(nbr, 16);
 	if (nbr == 0)
 		op->hex = ft_strdup("0");
+	else
+		op->hex = ft_itoa_base((unsigned long)nbr, 16);
 	op->len = ft_strlen(op->hex);
 	op->wid -= 2;
 	if (op->pre == 0 && *op->hex == '0' && op->wid)

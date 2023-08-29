@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jperez-r <joserabasot@gmail.com>           +#+  +:+       +#+        */
+/*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/19 07:45:41 by jperez-r          #+#    #+#             */
-/*   Updated: 2019/12/19 10:54:41 by jperez-r         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:06:34 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 
 	if (!lst)
 		return (NULL);
-	if (!(r = (t_list**)malloc(ft_lstsize(lst) * sizeof(*r))))
+	r = (t_list **)malloc(ft_lstsize(lst) * sizeof(*r));
+	if (!r)
 		return (NULL);
 	*r = NULL;
 	current = lst;
 	while (current)
 	{
-		if (!(new = ft_lstnew(f(current->content))))
+		new = ft_lstnew(f(current->content));
+		if (!new)
 		{
 			ft_lstclear(r, del);
 			free(r);

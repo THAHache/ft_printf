@@ -6,7 +6,7 @@
 /*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 15:29:43 by jperez-r          #+#    #+#             */
-/*   Updated: 2020/12/13 15:29:47 by jperez-r         ###   ########.fr       */
+/*   Updated: 2023/08/09 23:14:54 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdarg.h>
 # include "./libft/libft.h"
 
-typedef struct
+typedef struct oprint
 {
 	int		wid;
 	int		dot;
@@ -49,7 +49,7 @@ void		put_precision(t_oprint *op);
 
 void		print_c(t_oprint *op, char t);
 void		print_s(t_oprint *op);
-void		print_p(t_oprint *op, long nbr);
+void		print_p(t_oprint *op, void *nbr);
 void		print_diu(t_oprint *op, long nbr, int spa);
 void		print_x(t_oprint *op, long nbr, char t);
 

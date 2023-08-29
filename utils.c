@@ -6,7 +6,7 @@
 /*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/13 15:29:58 by jperez-r          #+#    #+#             */
-/*   Updated: 2020/12/13 15:30:03 by jperez-r         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:54:14 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	is_tag(t_oprint *op, char t)
 	if (op->tag == 2)
 	{
 		if (op->wid < 0)
-			op->size += 2;
+			op->size ++;
+		if (op->wid < -1)
+			op->size++;
 		if (t == 'x')
 			ft_putstr_fd("0x", 1);
 		else
@@ -77,7 +79,7 @@ void	is_tag(t_oprint *op, char t)
 	else if (op->tag && *op->hex != '0')
 	{
 		op->wid -= 2;
-		if (op->minzero >= 0 && op->wid >= op->pre)
+		if (op->minzero >= 0 && op->wid > op->pre)
 		{
 			if (t == 'x')
 				ft_putstr_fd("0x", 1);
@@ -97,10 +99,13 @@ void	is_tag(t_oprint *op, char t)
 void	put_sign(t_oprint *op)
 {
 	if (op->spasign == 2 && !op->neg)
+	{
+		op->neg = -1;
 		ft_putchar_fd('+', 1);
+	}
 	else if (op->neg == 1)
 	{
-		op->neg = 0;
+		op->neg = -1;
 		ft_putchar_fd('-', 1);
 	}
 }

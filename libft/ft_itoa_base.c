@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amepocch <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jperez-r <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 21:06:42 by jperez-r          #+#    #+#             */
-/*   Updated: 2020/12/12 00:35:04 by amepocch         ###   ########.fr       */
+/*   Updated: 2023/08/20 16:32:41 by jperez-r         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static	int	ft_len_base(long n, int base)
+static	int	ft_len_base(unsigned long n, int base)
 {
 	size_t	i;
 
@@ -25,15 +25,19 @@ static	int	ft_len_base(long n, int base)
 	return (i);
 }
 
-char		*ft_itoa_base(long n, int base)
+char	*ft_itoa_base(unsigned long n, int base)
 {
-	size_t		len;
-	char		*dst;
-	long		mod;
+	unsigned long	len;
+	char			*dst;
+	unsigned long	mod;
 
 	len = ft_len_base(n, base);
-	if (!(dst = malloc(len + 1)))
-		return (0);
+	dst = malloc(len + 1);
+	if (!dst)
+	{
+		free(dst);
+		return (NULL);
+	}
 	dst[len] = '\0';
 	len--;
 	while (n)
